@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base; 
-  # has_many :posts, foreign_key: :user_id
+class User < ActiveRecord::Base;  
   has_many :comments 
+  has_many :posts
 end
