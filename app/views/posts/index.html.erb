@@ -1,3 +1,56 @@
 <h3>Welcome!</h3>
 
-<p>This is the Postit template. You've access the PostsController, index action. This is the index template. Find me under app/views/posts folder.</p>
+<p>Welcome to my Reddit clone (PostIt)</p>
+
+<% @all_posts.each do|post| %>
+<div class="well well-lg">
+    
+  
+  <%= render post.categories %>
+  <br>
+  
+  <H4> <%= link_to post.title,post.url %> </H4>
+  <H6> <%= post.description %> </H6>
+
+  Posted by <%= post.user.username %> at <%= post.created_at %><br>
+  <%= post.comments.size %> comments
+
+<br>
+<br>
+
+Here's a tentative link to the Post comments
+<%= link_to "Comments",post_path(post) %>
+
+
+You want to iterate through all the categories assigned to a post.
+Use the following span class
+
+
+
+</div>
+<% end %>
+
+
+
+
+
+
+Here's an index of all posts:
+<table class="table table-striped">
+  <tr>
+  <th>Post Title</th>
+  <th>Description</th> 
+  <th>URL</th>
+  <th>id</th>
+  </tr>
+
+<% @all_posts.each do|post| %>
+<tr>
+<td><%= post.title%></td>
+<td><%= post.description%></td>
+<td><%= post.url%></td>
+<td><%= post.id%></td>
+</tr>
+<% end %>
+
+</table>

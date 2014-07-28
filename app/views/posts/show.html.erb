@@ -1,0 +1,20 @@
+  <% @post.categories.each do |category| %>
+  <span class="label label-info"> <%= category.name %> </span>
+  <% end %>
+<H1> <%= @post.title %> </H1>
+
+
+
+<%= @post.description %>
+<br>
+<%= @post.url %>
+
+<H5> Comments: </H5>
+<% @post.comments.each do |comment| %>
+<%=comment.body%> <br>
+Posted by <%=comment.user_id%> <br><br>
+
+<%end%>
+
+
+
