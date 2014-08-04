@@ -1,24 +1,53 @@
 class PostsController < ApplicationController
+before_action 
+
   def index
     @all_posts=Post.all
   end
 
   def show
-    @params_hash=params.inspect
     @post=Post.find(params[:id])
   end
 
-  def new #create a new one
+  def new
+    @post=Post.new
   end
 
-  def create #handles the submission of the new post
-  end
+  def create
+    @post=Post.new(strong_params)
 
+    if @post.save
+      redirect_to posts_path
+    else
+      render 'new'
+    end
+  end
+#===================
   def edit
+    @post=Post.find(params[:id])
   end
 
   def update
+    @post=Post.find(params[:id])
+    @post.update_attributes(strong_params)
+
+    if @post.save
+      flash[:notice] = "Post successfully edited"
+      redirect_to posts_path
+    else
+      flash[:notice] = "Post was not edited"
+      render 'new'
+    end
   end
 
+  private
+
+  def strong_params
+    params.require(:post).permit!
+    #I think the reason this works is not because you
+    #pass in a function into the update_attributes method
+    #but because "require(:post).permit! enables you
+    #to send things over"
+  end
 
 end

@@ -1,0 +1,12 @@
+<!-- This model-backed form takes an object.  Note that form_for helper must be preceded by %= -->
+<%= form_for @post do |f| %>
+<%= f.label "Website Title:" %>
+<%= f.text_field :title %>
+<%= f.label "Description:" %>
+<%= f.text_field :description %>
+<%= f.label "URL:" %>
+<%= f.text_field :url %>
+<br>
+<%= f.submit "Submit" %>
+
+<% end %>

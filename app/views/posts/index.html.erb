@@ -1,6 +1,6 @@
 <h3>Welcome!</h3>
 
-<p>Welcome to my Reddit clone (PostIt)</p>
+<p>People like these sites:</p>
 
 <% @all_posts.each do|post| %>
 <div class="well well-lg">
@@ -12,7 +12,8 @@
   <H4> <%= link_to post.title,post.url %> </H4>
   <H6> <%= post.description %> </H6>
 
-  Posted by <%= post.user.username %> at <%= post.created_at %><br>
+Posted by <%= post.creator.username unless post.creator.blank? %> at 
+<%= post.created_at %><br>
   <%= post.comments.size %> comments
 
 <br>
