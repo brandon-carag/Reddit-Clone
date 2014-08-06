@@ -7,6 +7,7 @@ before_action
 
   def show
     @post=Post.find(params[:id])
+    @comment=Comment.new
   end
 
   def new
@@ -35,7 +36,6 @@ before_action
       flash[:notice] = "Post successfully edited"
       redirect_to posts_path
     else
-      flash[:notice] = "Post was not edited"
       render 'new'
     end
   end
@@ -43,7 +43,7 @@ before_action
   private
 
   def strong_params
-    params.require(:post).permit!
+    params.require(:post).permit(:url,:title,:description)
     #I think the reason this works is not because you
     #pass in a function into the update_attributes method
     #but because "require(:post).permit! enables you

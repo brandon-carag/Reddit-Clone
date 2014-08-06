@@ -1,6 +1,6 @@
 <h3>Welcome!</h3>
 
-<p>People like these sites:</p>
+<p>PostIt! is a news aggregator.  Users submit links and they're voted up or down.</p>
 
 <% @all_posts.each do|post| %>
 <div class="well well-lg">
@@ -14,17 +14,13 @@
 
 Posted by <%= post.creator.username unless post.creator.blank? %> at 
 <%= post.created_at %><br>
-  <%= post.comments.size %> comments
+<%= link_to "#{post.comments.size} Comments",post_path(post) %>
+
+  
 
 <br>
 <br>
 
-Here's a tentative link to the Post comments
-<%= link_to "Comments",post_path(post) %>
-
-
-You want to iterate through all the categories assigned to a post.
-Use the following span class
 
 
 

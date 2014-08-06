@@ -1,0 +1,19 @@
+<% if @comment.errors.any? %>
+<div class="alert">  
+<% @comment.errors.full_messages.each do |error|%>
+<strong><%= error %><br></strong>
+<%end%>
+<% end %>
+</div>  
+
+
+<h1>New Comment Template</h1>
+
+<!-- This model-backed form takes an object.  Note that form_for helper must be preceded by %= -->
+<%= form_for [@post,@comment] do |f| %>
+<%= f.label "Enter Comment:" %>
+<%= f.text_field :body %>
+<br>
+<%= f.submit "Submit Comment" %>
+
+<% end %>

@@ -1,17 +1,15 @@
-<div class="alert">  
+<%= render "shared/content_title", :title => "Add a post" %>
+
 <a class="close" data-dismiss="alert">×</a>  
 <% if @post.errors.any? %>
+<div class="alert">  
 <% @post.errors.full_messages.each do |error|%>
 <strong><%= error %><br></strong>
 <%end%>
 <% end %>
 </div>  
 
-<h4>Add a Post</h4>
 <%= render "shared/post_formz" %>
 
-<!-- <div class="form-group has-error">
-  <label class="control-label" for="inputError1">Input with error</label>
-  <input type="text" class="form-control" id="inputError1"> </div> -->
 
 

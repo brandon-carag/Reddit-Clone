@@ -22,12 +22,10 @@ def create
     render 'new'
   end
 end
-
-
+#====================
 def edit
   @category=Category.find(params[:id])
 end
-
 
 def update
   @category=Category.find(params[:id])
@@ -46,7 +44,7 @@ end
 private
 
 def strong_params
-  params.require(:category).permit!
+  params.require(:category).permit(:name)
 end
 
 end

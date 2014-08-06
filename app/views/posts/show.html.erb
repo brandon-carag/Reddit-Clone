@@ -1,20 +1,26 @@
+<%= render "shared/form_error_handling", :item => @comment %>
+
+<% if @comment.errors.any? %>
+<div class="alert">  
+<% @comment.errors.full_messages.each do |error|%>
+<strong><%= error %><br></strong>
+<%end%>
+<% end %>
+</div>    
+
+
   <% @post.categories.each do |category| %>
   <span class="label label-info"> <%= category.name %> </span>
   <% end %>
-<H1> <%= @post.title %> </H1>
+<H1> <%= link_to @post.title,@post.url %> </H1>
+<%= @post.description %> <br>
 
 
-
-<%= @post.description %>
-<br>
-<%= @post.url %>
-
-<H5> Comments: </H5>
+<H6> Comments: </H6>
 <% @post.comments.each do |comment| %>
+<div class="well well-small">
 <%=comment.body%> <br>
-Posted by <%=comment.creator.username unless comment.creator.blank?%> <br><br>
-
+<small>Posted by <%=comment.creator.username unless comment.creator.blank?%></small> <br><br></div>
 <%end%>
 
-
-
+<%= render '/shared/comment_form' %>

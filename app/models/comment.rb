@@ -2,7 +2,7 @@ class Comment < ActiveRecord::Base;
   belongs_to :creator, foreign_key: "user_id", class_name: "User"
   belongs_to :post
 
-  validates_presence_of :body, :post_id, :user_id
+  validates_presence_of :body, :post_id
 end
 
 
