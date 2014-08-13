@@ -1,9 +1,9 @@
-<% if item.errors.any? %>
+ <% if item.errors.any? %>
 
 <div class="alert">  
 <a class="close" data-dismiss="alert">×</a>  
 
-<% item.full_messages.each do |error|%>
+<% item.errors.full_messages.each do |error|%>
 <strong><%= error %><br></strong>
 <%end%>
 <% end %>

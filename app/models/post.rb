@@ -8,5 +8,7 @@ class Post < ActiveRecord::Base;
   has_many :categories, through: :post_categories
 
   validates_presence_of :url,:title,:description
+  validates :url, uniqueness: {case_sensitive: false}
+  
   # validates_format_of :website, :with => URI::regexp(%w(http https))
 end

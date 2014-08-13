@@ -44,7 +44,9 @@ end
 private
 
 def strong_params
-  params.require(:category).permit(:name)
+  #FIX THIS AFTER TESTING
+  # params.require(:category).permit(:name)
+  params.require(:category).permit!
 end
 
 end

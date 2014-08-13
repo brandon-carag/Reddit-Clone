@@ -1,12 +1,5 @@
-<a class="close" data-dismiss="alert">×</a>  
-<% if @category.errors.any? %>
-<div class="alert">  
-<% @category.errors.full_messages.each do |error|%>
-<strong><%= error %><br></strong>
-<%end%>
-<% end %>
-</div>  
-
+<%= render '/shared/form_error_handling', :item => @category %>
+<%= render "shared/content_title", :title => "Add a category" %>
 By filling out the fields below, you can create a new category that can be tagged to posts you create. </br></br>
 
 <%= render "shared/categories_form" %>

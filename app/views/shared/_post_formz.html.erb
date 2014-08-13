@@ -6,7 +6,65 @@
 <%= f.text_field :description %>
 <%= f.label "URL:" %>
 <%= f.text_field :url %>
-<br>
+
+
+<br><emphasis>Categories:</emphasis><br>
+<%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+
+
+<br> 
+
+
+<!-- #When this is passed as a form, it passes an invisible 0 attribute
+<%= f.check_box "category_ids",{:multiple => true},2%>
+ -->
+
+<!-- 
+#This non model-backed checkbox-processing loop works
+<% Category.all.each do |category|%>
+<%= check_box_tag("post[category_ids][]",category.id) %>
+<%= label_tag("1", "#{category.name}") %>
+<% end %>
+ -->
+
+<!-- 
+#This static checkbox-processing form helpers work
+<%= check_box_tag("post[category_ids][]",1) %>
+<%= label_tag(1, "News") %>
+<%= check_box_tag("post[category_ids][]",2) %>
+<%= label_tag(2, "Gossip") %> -->
+
+<!-- This HTML WORKS
+<input type="checkbox" name="post[category_ids][]" value="2">News<br>
+<input type="checkbox" name="post[category_ids][]" value="3">Gossip<br>
+ -->
+
+
+
 <%= f.submit "Submit" %>
 
+
+
 <% end %>
+
+
+
+<!-- Note the critical thing here is that the name part of the HTML
+form is being populated with the post key of the params hash, and
+most importantly it is suffixed with "[]", indicating this is a
+compilation
+
+The next problem is completely divorced from HTML checkbox forms, when
+in the rails console, I can't seem to add an additional category id
+to a specific post and I'm not clear why.
+
+Problem #2
+It's unclear why it won't allow me to mass assign category_id attributes.
+
+SELECT 1 AS one FROM "categories" WHERE (LOWER("categories"."name") = LOWER('Gossip') AND "categories"."id" != 3) LIMIT 1
+
+@post=Post.new("category_ids"=>["2", "3"].valid?)
+@post=Post.new("category_ids"=>["2", "3"].valid?)
+
+
+@post=@Post.new("title"=>"msnbc","description"=>"msnbc","url"=>"msnbc.com","category_ids"=>[2,3]) -->

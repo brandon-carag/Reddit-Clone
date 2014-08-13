@@ -1,0 +1,5 @@
+/*This css file should override the default booststrap CSS*/
+
+.well.well-lg {
+  width:500px;
+}

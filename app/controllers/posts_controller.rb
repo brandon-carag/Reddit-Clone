@@ -15,7 +15,11 @@ before_action
   end
 
   def create
+    binding.pry
     @post=Post.new(strong_params)
+    #In the form, we would need to make sure that some sort of category
+    #assignment took place.  A basic assignment would be 
+    # @post.categories <
 
     if @post.save
       redirect_to posts_path
@@ -43,7 +47,9 @@ before_action
   private
 
   def strong_params
-    params.require(:post).permit(:url,:title,:description)
+    # UNCOMMENT THIS IF IT WORKS:
+    # params.require(:post).permit(:url,:title,:description)
+    params.require(:post).permit!
     #I think the reason this works is not because you
     #pass in a function into the update_attributes method
     #but because "require(:post).permit! enables you

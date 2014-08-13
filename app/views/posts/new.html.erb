@@ -1,15 +1,5 @@
+<%= render '/shared/form_error_handling', :item => @post %>
 <%= render "shared/content_title", :title => "Add a post" %>
-
-<a class="close" data-dismiss="alert">×</a>  
-<% if @post.errors.any? %>
-<div class="alert">  
-<% @post.errors.full_messages.each do |error|%>
-<strong><%= error %><br></strong>
-<%end%>
-<% end %>
-</div>  
-
 <%= render "shared/post_formz" %>
-
 
 

@@ -1,18 +1,9 @@
-<%= render "shared/form_error_handling", :item => @comment %>
+<%= render '/shared/form_error_handling', :item => @comment %>
+<%= render '/shared/category_links', :item => @post %>
+  
 
-<% if @comment.errors.any? %>
-<div class="alert">  
-<% @comment.errors.full_messages.each do |error|%>
-<strong><%= error %><br></strong>
-<%end%>
-<% end %>
-</div>    
-
-
-  <% @post.categories.each do |category| %>
-  <span class="label label-info"> <%= category.name %> </span>
-  <% end %>
 <H1> <%= link_to @post.title,@post.url %> </H1>
+<small><%= link_to "[Edit]",edit_post_path %></small></br>
 <%= @post.description %> <br>
 
 
@@ -24,3 +15,4 @@
 <%end%>
 
 <%= render '/shared/comment_form' %>
+

@@ -1,12 +1,11 @@
 <h3>Welcome!</h3>
 
-<p>PostIt! is a news aggregator.  Users submit links and they're voted up or down.</p>
+<p>PostIt! is a news aggregator--users submit links that are voted up or down.</p>
 
 <% @all_posts.each do|post| %>
 <div class="well well-lg">
     
-  
-  <%= render post.categories %>
+  <%= render '/shared/category_links', :item => post %>
   <br>
   
   <H4> <%= link_to post.title,post.url %> </H4>
