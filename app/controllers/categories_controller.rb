@@ -16,9 +16,9 @@ def create
   @category=Category.new(strong_params)
 
   if @category.save
+    flash[:notice] = "Category was created!"
     redirect_to categories_path
     else
-    flash[:notice] = "Category was not edited"
     render 'new'
   end
 end

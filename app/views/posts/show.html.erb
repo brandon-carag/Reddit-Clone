@@ -1,18 +1,20 @@
+
 <%= render '/shared/form_error_handling', :item => @comment %>
 <%= render '/shared/category_links', :item => @post %>
   
+<H1> <%= link_to @post.title, url_formatter(@post.url)  %></H1>
 
-<H1> <%= link_to @post.title,@post.url %> </H1>
-<small><%= link_to "[Edit]",edit_post_path %></small></br>
+
+Perhaps chagne this so that it looks to the instance variable instead of the named route, since the named route relies upon the 
+<small><%= link_to "[Edit]",edit_post_path(@post) %></small></br>
 <%= @post.description %> <br>
 
-
+<%= render '/shared/comment_form' %>
 <H6> Comments: </H6>
 <% @post.comments.each do |comment| %>
 <div class="well well-small">
 <%=comment.body%> <br>
-<small>Posted by <%=comment.creator.username unless comment.creator.blank?%></small> <br><br></div>
+<small>Posted by ____<%=comment.creator.username unless comment.creator.blank?%> on <%= time_formatter(comment.created_at) %> </small> <br><br></div>
 <%end%>
 
-<%= render '/shared/comment_form' %>
 

@@ -15,9 +15,12 @@ def create
   @post=Post.find(params[:post_id])
   @comment=@post.comments.new(strong_params)
   if @comment.save
-    redirect_to posts_path
+    flash[:notice] = "Comment successfully saved!"
+    redirect_to post_path(params[:post_id])
   else
-    render '/posts/show'
+    render 'posts/show'
+    # redirect_to post_path(params[:post_id])
+    # render '/posts/show'
     # render '/shared/_comment_form'
     # render '/new'
   end

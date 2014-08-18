@@ -1,7 +1,10 @@
 
 <%= form_for [@post,@comment] do |f| %>
-<%= f.label "Leave a comment" %>
-<%= f.text_field :body %>
+<small><%= f.label "Leave a comment" %></small>
+<%= f.text_field :body, class: 'span4'%>
 <br>
 <%= f.submit "Submit Comment" %>
 <% end %>
+
+
+
