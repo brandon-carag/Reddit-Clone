@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+before_action :require_login_redirect, only: [:new,:edit, :update, :create, :destroy]
 
 def index
   @all_categories=Category.all

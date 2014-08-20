@@ -14,6 +14,7 @@ end
 def create
   @post=Post.find(params[:post_id])
   @comment=@post.comments.new(strong_params)
+  @comment.user_id=current_user.id
   if @comment.save
     flash[:notice] = "Comment successfully saved!"
     redirect_to post_path(params[:post_id])

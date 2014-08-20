@@ -1,11 +1,12 @@
+<% if !logged_in? %>
 <h3>Welcome!</h3>
+<% end %>
 
 <p>PostIt! is a news aggregator--users submit links that are voted up or down.</p>
 
 <% @all_posts.each do|post| %>
-<div class="well well-lg">
 
-    
+<div class="well well-lg">
   <%= render '/shared/category_links', :item => post %>
   <br>
   

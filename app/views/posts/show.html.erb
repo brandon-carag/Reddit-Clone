@@ -14,7 +14,7 @@ Perhaps chagne this so that it looks to the instance variable instead of the nam
 <% @post.comments.each do |comment| %>
 <div class="well well-small">
 <%=comment.body%> <br>
-<small>Posted by ____<%=comment.creator.username unless comment.creator.blank?%> on <%= time_formatter(comment.created_at) %> </small> <br><br></div>
+<small>Posted by <%=comment.creator.username unless comment.creator.blank?%> on <%= time_formatter(comment.created_at) %> </small> <br><br></div>
 <%end%>
 
 

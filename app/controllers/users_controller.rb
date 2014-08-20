@@ -1,5 +1,36 @@
-class PostsController < ApplicationController
-before_action :require_login_redirect, only: [:new,:edit, :update, :create, :destroy]
+class UsersController < ApplicationController
+  def new
+    @user=User.new
+  end
+
+  def create
+    @user=User.new(strong_params)
+
+    if @user.save
+      flash[:notice] = "User successfully created!"
+      redirect_to posts_path
+    else  
+      render 'new'
+    end
+
+  end
+
+  def show
+  end
+
+  private
+
+  def strong_params
+    # params.require(:post).permit(:url,:title,:description,:category_ids)
+    params.require(:user).permit(:username,:password,:password_confirmation)
+  end
+end
+
+
+
+
+
+
 
   def index
     @all_posts=Post.all
@@ -15,8 +46,8 @@ before_action :require_login_redirect, only: [:new,:edit, :update, :create, :des
   end
 
   def create
+    binding.pry
     @post=Post.new(strong_params)
-    @post.user_id=current_user.id
     
     if @post.save
       flash[:notice] = "Post successfully saved!"
@@ -52,5 +83,3 @@ before_action :require_login_redirect, only: [:new,:edit, :update, :create, :des
     #but because "require(:post).permit! enables you
     #to send things over"
   end
-
-end
