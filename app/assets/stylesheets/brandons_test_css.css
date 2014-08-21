@@ -12,3 +12,17 @@
 width:200px;
 background-color: #E8E8E8;
 }
+
+.span1.well.voting{
+height:35px;
+width:35px;
+text-align: center;
+}
+
+.voting_text{
+line-height: 1;
+}
+
+.well{
+background-color: #E8E8E8;
+}

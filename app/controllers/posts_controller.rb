@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-before_action :require_login_redirect, only: [:new,:edit, :update, :create, :destroy]
+before_action :require_login_redirect, only: [:new,:edit, :update, :create, :destroy,:vote]
 
   def index
     @all_posts=Post.all
@@ -41,8 +41,25 @@ before_action :require_login_redirect, only: [:new,:edit, :update, :create, :des
     end
   end
 
-  private
+  def vote
+    @post=Post.find(params[:id])
+    @vote=Vote.new(user_id:current_user.id,vote:params["vote"],voteable_type: "Post",voteable_id:@post.id)
+    if @vote.save
+      flash[:notice] = "Vote counted"
+      redirect_to :back
+    else
+      flash[:notice] = "You can only vote once for #{@post.title}"
+      redirect_to :back
+    end
+  end
 
+
+
+
+#PRIVATE METHODS==============================================================
+
+  private
+  
   def strong_params
     # UNCOMMENT THIS IF IT WORKS:
     # params.require(:post).permit(:url,:title,:description,:category_ids)

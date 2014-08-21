@@ -17,27 +17,34 @@ Profile: <%= @current_user.username %>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
-      <p> <%= render '/shared/display_posts', :obj => @current_user %> </p>
+      <p> <%= render '/shared/display_posts', :obj => @current_user.posts %> </p>
     </div>
     <div class="tab-pane" id="tab2">
       <p>
 
       <H6> Comments: </H6>
         <% @current_user.comments.each do |comment| %>
-        <div class="well well-small">
+
+        
+        <div class="row">          
+          <div class="span1 well voting">
+            <!-- Below code turns a get request into the posting of a form through js -->
+            <%= link_to vote_post_path(post.id,vote: true), method: :post do %>
+              <i class="icon-chevron-up"></i>
+            <% end %>
+            <%= link_to vote_post_path(post.id,vote: false), method: :post do %>
+              <i class="icon-chevron-down"></i>
+            <% end %>
+            <br>
+            <span class="voting_text"><strong> <%= post.sum_votes %> </strong></span>
+
+          </div>
+
+
+        <div class="span8 well well-small">
         "<%=comment.body%>" <small>on <%= comment.post.title %></small> <br>
         <small>Posted by <%=comment.creator.username unless comment.creator.blank?%> on <%= time_formatter(comment.created_at) %> </small> <br><br></div>
         <%end%>
-
-
-
-
-
-
-
-
-
-
 
 
       </p>

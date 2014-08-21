@@ -1,16 +1,35 @@
 <!-- This partial displays the basic information for a post -->
 
-          <% obj.posts.each do|post| %>
-          <div class="well well-lg">
-            <%= render '/shared/category_links', :item => post %>
-            <br>
-            
-            <H4> <%= link_to post.title,url_formatter(post.url) %> </H4>
-            <H6> <%= post.description %> </H6>
+<% obj.each do|post| %>
 
-          <small>Posted by <%= post.creator.username unless post.creator.blank? %> on 
-          <%= time_formatter(post.created_at) %></small><br>
-          <%= link_to "#{post.comments.size} Comments",post_path(post) %>
-          <br><br>
-          </div>
-          <% end %>
+
+  <div class="row">          
+    <div class="span1 well voting">
+      <!-- Below code turns a get request into the posting of a form through js -->
+      <%= link_to vote_post_path(post.id,vote: true), method: :post do %>
+        <i class="icon-chevron-up"></i>
+      <% end %>
+      <%= link_to vote_post_path(post.id,vote: false), method: :post do %>
+        <i class="icon-chevron-down"></i>
+      <% end %>
+      <br>
+      <span class="voting_text"><strong> <%= post.sum_votes %> </strong></span>
+
+    </div>
+    
+    <div class="span8 well">
+      <%= render '/shared/category_links', :item => post %>
+      <br>
+      
+      <H4> <%= link_to post.title,url_formatter(post.url) %> </H4>
+      <H6> <%= post.description %> </H6>
+
+    <small>Posted by <%= post.creator.username unless post.creator.blank? %> on 
+    <%= time_formatter(post.created_at) %></small><br>
+    <%= link_to "#{post.comments.size} Comments",post_path(post) %>
+    <br><br>
+    </div>
+  </div>
+
+<% end %>
+

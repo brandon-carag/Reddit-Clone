@@ -2,45 +2,8 @@
 <h3>Welcome!</h3>
 <% end %>
 
-<p>PostIt! is a news aggregator--users submit links that are voted up or down.</p>
+<p><b>PostIt!</b> is a website aggregator--users submit links that are voted up or down.</p>
 
-<% @all_posts.each do|post| %>
-
-<div class="well well-lg">
-  <%= render '/shared/category_links', :item => post %>
-  <br>
-  
-  <H4> <%= link_to post.title,url_formatter(post.url) %> </H4>
-  <H6> <%= post.description %> </H6>
-
-<small>Posted by <%= post.creator.username unless post.creator.blank? %> on 
-<%= time_formatter(post.created_at) %></small><br>
-<%= link_to "#{post.comments.size} Comments",post_path(post) %>
-<br><br>
-</div>
-<% end %>
+<p> <%= render '/shared/display_posts', :obj => @all_posts %> </p>
 
 
-
-
-
-
-Here's an index of all posts:
-<table class="table table-striped">
-  <tr>
-  <th>Post Title</th>
-  <th>Description</th> 
-  <th>URL</th>
-  <th>id</th>
-  </tr>
-
-<% @all_posts.each do|post| %>
-<tr>
-<td><%= post.title%></td>
-<td><%= post.description%></td>
-<td><%= post.url%></td>
-<td><%= post.id%></td>
-</tr>
-<% end %>
-
-</table>

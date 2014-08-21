@@ -13,4 +13,16 @@ class Post < ActiveRecord::Base;
   validates :url, uniqueness: {case_sensitive: false}
   
   # validates_format_of :website, :with => URI::regexp(%w(http https))
+  def count_up_votes
+    self.votes.where(vote:true).size
+  end
+
+  def count_down_votes
+    self.votes.where(vote:false).size
+  end
+
+  def sum_votes
+    count_up_votes - count_down_votes
+  end
+
 end
