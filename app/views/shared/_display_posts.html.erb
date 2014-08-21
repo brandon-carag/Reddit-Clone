@@ -1,0 +1,16 @@
+<!-- This partial displays the basic information for a post -->
+
+          <% obj.posts.each do|post| %>
+          <div class="well well-lg">
+            <%= render '/shared/category_links', :item => post %>
+            <br>
+            
+            <H4> <%= link_to post.title,url_formatter(post.url) %> </H4>
+            <H6> <%= post.description %> </H6>
+
+          <small>Posted by <%= post.creator.username unless post.creator.blank? %> on 
+          <%= time_formatter(post.created_at) %></small><br>
+          <%= link_to "#{post.comments.size} Comments",post_path(post) %>
+          <br><br>
+          </div>
+          <% end %>

@@ -1,0 +1,46 @@
+Profile: <%= @current_user.username %>
+
+<div>
+<b> Username: </b> <%= @current_user.username %>
+<br>
+<b>Time zone: </b> PLACEHOLDER
+</div> 
+
+<br>
+
+<b> <%= @current_user.username %>'s Activity </b>
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">Posts (<%= current_user.posts.size %>)</a></li>
+    <li><a href="#tab2" data-toggle="tab">Comments (<%= @current_user.comments.size %>)</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <p> <%= render '/shared/display_posts', :obj => @current_user %> </p>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <p>
+
+      <H6> Comments: </H6>
+        <% @current_user.comments.each do |comment| %>
+        <div class="well well-small">
+        "<%=comment.body%>" <small>on <%= comment.post.title %></small> <br>
+        <small>Posted by <%=comment.creator.username unless comment.creator.blank?%> on <%= time_formatter(comment.created_at) %> </small> <br><br></div>
+        <%end%>
+
+
+
+
+
+
+
+
+
+
+
+
+      </p>
+    </div>
+  </div>
+</div>
