@@ -13,8 +13,12 @@ PostitTemplate::Application.routes.draw do
   resources :posts, except: :destroy do
     resources :comments, except: :destroy
     end
+  
   resources :categories, except: :destroy
   resources :users, except: [:index,:destroy,:show]
+
+
+
 
 end
 
