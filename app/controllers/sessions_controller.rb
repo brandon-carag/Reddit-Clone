@@ -5,7 +5,6 @@ end
 
 def create
   user=User.find_by username: params["username"]
-  binding.pry
   if user && user.authenticate(params["password"])
     flash[:alert]="Logged in successfully."
     session[:user_id]=user.id

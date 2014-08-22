@@ -11,11 +11,17 @@ PostitTemplate::Application.routes.draw do
 
 #Model Routes
   resources :posts, except: :destroy do
-
     member do
-      post '/vote', to: 'posts#vote'
+    post '/vote', to: 'posts#vote'
     end
-    resources :comments, except: :destroy
+    
+    resources :comments, except: :destroy do
+      member do
+      post '/vote', to: 'comments#vote'
+      end
+    
+    end
+    
 
     end
 

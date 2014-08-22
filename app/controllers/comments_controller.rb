@@ -27,6 +27,18 @@ def create
   end
 end
 
+def vote
+    @vote=Vote.new(user_id:current_user.id,vote:params["vote"],voteable_type: "Comment",voteable_id:params[:id])
+    if @vote.save
+      flash[:notice] = "Vote counted"
+      redirect_to :back
+    else
+      flash[:notice] = "You can only vote once for this comment"
+      redirect_to :back
+    end
+end
+
+
 private
 
 def strong_params
