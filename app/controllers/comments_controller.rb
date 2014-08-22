@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+before_action :require_login_redirect, only: [:new,:edit, :update, :create, :destroy,:vote]
+  
 
 def index
 end

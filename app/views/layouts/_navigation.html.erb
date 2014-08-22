@@ -19,8 +19,9 @@
         <% end %>
 
         <li role="presentation" class="divider"></li>
-        
+        <% if logged_in? %>
         <li role="presentation"><a role="menuitem" tabindex="-1" href= <%= new_category_path %> >Create new category</a></li>
+        <% end %>
       </ul>
     </div>
   </li>

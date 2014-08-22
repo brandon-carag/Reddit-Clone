@@ -3,7 +3,12 @@
   
 <H1> <%= link_to @post.title, url_formatter(@post.url)  %></H1>
 </br>
-<%= @post.description %> <small><%= link_to "[Edit]",edit_post_path(@post) %></small><br><br>
+
+<%= @post.description %> 
+<% if logged_in? %>
+<small><%= link_to "[Edit]",edit_post_path(@post) %></small>
+<% end %>
+<br><br>
 
 
 
