@@ -4,6 +4,6 @@
 
 <p><b>PostIt!</b> is a website aggregator--users submit links that are voted up or down.</p>
 
-<p> <%= render '/shared/display_posts', :obj => @all_posts %> </p>
+<p> <%= render '/shared/display_posts', :obj => @all_posts.sort_by{|post|post.sum_votes}.reverse %> </p>
 
 

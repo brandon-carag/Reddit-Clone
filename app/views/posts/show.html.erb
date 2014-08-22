@@ -2,17 +2,16 @@
 <%= render '/shared/category_links', :item => @post %>
   
 <H1> <%= link_to @post.title, url_formatter(@post.url)  %></H1>
+</br>
+<%= @post.description %> <small><%= link_to "[Edit]",edit_post_path(@post) %></small><br><br>
 
 
-Perhaps chagne this so that it looks to the instance variable instead of the named route, since the named route relies upon the 
-<small><%= link_to "[Edit]",edit_post_path(@post) %></small></br>
-<%= @post.description %> <br>
 
 <%= render '/shared/comment_form' %>
 <%= render '/shared/display_comments', :obj => @post %>
 
       
-
+<!-- Perhaps chagne this so that it looks to the instance variable instead of the named route, since the named route relies upon the  -->
 
 <!-- <H6> Comments: </H6>
 <% @post.comments.each do |comment| %>

@@ -5,18 +5,16 @@
 <small>The posts below are related to the <%= @category.name %> category</small>
 <table class="table table-striped">
   <tr>
-  <th>Post Title</th>
+  <th>Votes</th>
+  <th>Site</th>
   <th>Description</th> 
-  <th>URL</th>
-  <th>id</th>
   </tr>
 
-<% @category.posts.each do|post| %>
+<% @category.posts.sort_by{|post|post.sum_votes}.reverse.each do|post| %>
 <tr>
-<td><%= post.title%></td>
-<td><%= post.description%></td>
-<td><%= post.url%></td>
-<td><%= post.id%></td>
+<td><%= post.sum_votes%></td>
+<td><%= link_to post.title,url_formatter(post.url) %></td>
+<td><%= link_to post.description,post_path(post.id)%></td>
 </tr>
 <% end %>
 

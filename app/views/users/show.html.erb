@@ -17,7 +17,7 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
-      <p> <%= render '/shared/display_posts', :obj => @current_user.posts %> </p>
+      <p> <%= render '/shared/display_posts', :obj => @current_user.posts.sort_by{|post|post.sum_votes}.reverse %> </p>
     </div>
     <div class="tab-pane" id="tab2">
       <p>
