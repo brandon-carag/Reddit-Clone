@@ -35,7 +35,7 @@ def update
   if @category.save
     redirect_to categories_path
   else
-    flash[:notice] = "Category was not edited"
+    flash[:error] = "Category was not edited"
     render 'new'
   end
 end

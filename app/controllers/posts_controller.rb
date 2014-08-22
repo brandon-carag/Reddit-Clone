@@ -48,7 +48,7 @@ before_action :require_login_redirect, only: [:new,:edit, :update, :create, :des
       flash[:notice] = "Vote counted"
       redirect_to :back
     else
-      flash[:notice] = "You can only vote once for #{@post.title}"
+      flash[:error] = "You can only vote once for #{@post.title}"
       redirect_to :back
     end
   end

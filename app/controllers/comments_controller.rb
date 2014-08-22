@@ -33,7 +33,7 @@ def vote
       flash[:notice] = "Vote counted"
       redirect_to :back
     else
-      flash[:notice] = "You can only vote once for this comment"
+      flash[:error] = "You can only vote once for this comment"
       redirect_to :back
     end
 end

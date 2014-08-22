@@ -16,9 +16,10 @@ end
 
 def require_login_redirect
   unless logged_in?
-    flash[:notice] = "Please login to take this action."
+    flash[:error] = "Please login to take this action."
     redirect_to login_path
   end
 end
 
 end
+
