@@ -3,7 +3,7 @@
 class AddUsersFkPosts < ActiveRecord::Migration
   def change
     change_table :posts do |t|
-      t.string :user_id
+      t.integer :user_id
     end
   end
 end
