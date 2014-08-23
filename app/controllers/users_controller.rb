@@ -18,6 +18,23 @@ class UsersController < ApplicationController
     end
 
   end
+#============================
+  def edit
+    @user=current_user
+  end
+
+  def update
+    binding.pry
+    @user=User.find(params[:id])
+    if @user.update(strong_params)
+      flash[:notice] = "Profile information successfully edited!"
+      redirect_to root_path
+    else
+      flash[:error] = "There was a problem with your username or password"
+      redirect_to edit_profile_path
+    end
+  end
+
 
   def show
     @current_user=current_user

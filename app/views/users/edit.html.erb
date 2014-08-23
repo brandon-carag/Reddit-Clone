@@ -1,0 +1,13 @@
+<%= render "shared/content_title", :title => "Edit Your Profile" %>
+<%= render "shared/form_error_handling", :item => @user %>
+<%= form_for @user do |f| %>
+<%= f.label "Username:" %>
+<%= f.text_field :username %>
+<%= f.label "Password:" %>
+<%= f.password_field :password %>
+<%= f.label "Confirm Password:" %>
+<%= f.password_field :password_confirmation %>
+<br>
+<%= f.submit "Submit" %>
+
+<% end %>

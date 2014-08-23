@@ -26,3 +26,7 @@ line-height: 1;
 .well{
 background-color: #E8E8E8;
 }
+
+.dropdown-menu{
+margin-right: 150px;
+}

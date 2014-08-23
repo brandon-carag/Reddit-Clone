@@ -5,6 +5,6 @@ class User < ActiveRecord::Base;
 
   validates_presence_of :username
   validates :username, uniqueness: {case_sensitive: false}
-  validates :password, length: {minimum: 8}
+  validates :password, length: {minimum: 8}, on: :create
   has_secure_password
 end
