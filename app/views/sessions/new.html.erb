@@ -1,6 +1,6 @@
 <%= render "shared/content_title", :title => "Please log in:" %>
 
-<div>
+<div class="well span4">
 <%= form_tag(login_path, method: "post") do %>
 <%= label_tag(:username, "Username") %>
 <%= text_field_tag(:username) %>

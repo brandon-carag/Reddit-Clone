@@ -4,13 +4,15 @@
   <li> <%= link_to 'Trending Posts', posts_path %> </li>
 
   <% if logged_in? %>
-  <li> <%= link_to 'New Post', new_post_path %> </li>
+  <div class="nav_item dropdown">
+  <li> <%= link_to 'New Post', new_post_path, class: "btn btn-primary" %> </li>
+  </div>
   <% end %>
 
   <li>
-    <div class="dropdown">
+    <div class="nav_item dropdown">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-        Post Categories
+        <i class="icon-th-list"></i> Post Categories
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
@@ -25,20 +27,32 @@
       </ul>
     </div>
   </li>
-  
+
+
+
+
+
 
   <% if logged_in? %>
     <li>
-      <div class="dropdown">
+      <div class="nav_item dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-          <%= "#{current_user.username}" %>
+          <i class="icon-user"></i><%= " #{current_user.username}" %>
           <span class="caret"></span>
         </button>
 
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                  
-          <li> <%= link_to "Edit Your Porfile", edit_profile_path %> </li>
-          <li> <%= link_to 'Logout', logout_path %> </li>
+          <li>
+            <%= link_to edit_profile_path, class: 'nav_item' do %>
+              <i class="icon-pencil"></i> Edit Profile
+             <% end %>
+          </li>
+          <li>
+            <%= link_to logout_path, class: 'nav_item' do %>
+              <i class="icon-remove"></i> Logout
+             <% end %>
+          </li>
           
         </ul>
       </div>
@@ -48,11 +62,15 @@
 
 
   <% if !logged_in? %>
-  <li> <%= link_to 'Register', new_user_path %> </li>
+  <div class="nav_item"
+  <li> <%= link_to 'Sign Up', new_user_path, class: "btn btn-primary" %> </li>
+  </div>
   <% end %>
 
   <% if !logged_in? %>
-  <li> <%= link_to 'Login', login_path %> </li>
+  <div class="nav_item"
+  <li> <%= link_to 'Login', login_path, class: "btn btn-success" %> </li>
+  </div>
   <% end %>
 
 
