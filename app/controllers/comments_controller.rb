@@ -31,13 +31,22 @@ end
 
 def vote
     @vote=Vote.new(user_id:current_user.id,vote:params["vote"],voteable_type: "Comment",voteable_id:params[:id])
-    if @vote.save
-      flash[:notice] = "Vote counted"
-      redirect_to :back
-    else
-      flash[:error] = "You can only vote once for this comment"
-      redirect_to :back
+    @comment=Comment.find_by id:params[:id]
+    
+    respond_to do |format|
+      format.html do
+        if @vote.save
+        flash[:notice] = "Vote counted"
+        redirect_to :back
+        else
+        flash[:error] = "You can only vote once for this comment"
+        redirect_to :back
+        end
+      end
+      format.js{render '/shared/show_updated_comment_vote_count'}
     end
+
+    
 end
 
 

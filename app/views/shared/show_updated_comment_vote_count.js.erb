@@ -1,0 +1,6 @@
+<% if @vote.save %>
+$("#vote_count_for_comment<%= @comment.id %>").html("<strong><%= @comment.sum_votes %></strong>");
+<% else %>
+  alert("You can only vote for this comment once.");  
+<% end %>
+

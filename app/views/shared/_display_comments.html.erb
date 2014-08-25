@@ -2,14 +2,14 @@
         <% obj.comments.sort_by{|post|post.sum_votes}.reverse.each do |comment| %>   
 <div class="row">          
           <div class="span1 well voting">
-            <%= link_to vote_post_comment_path(comment.post_id,comment.id,vote: true), method: :post do %>
+            <%= link_to vote_post_comment_path(comment.post_id,comment.id,vote: true), method: :post, remote: true do %>
               <i class="icon-chevron-up"></i>
             <% end %>
-            <%= link_to vote_post_comment_path(comment.post_id,comment.id,vote: false), method: :post do %>
+            <%= link_to vote_post_comment_path(comment.post_id,comment.id,vote: false), method: :post, remote: true do %>
               <i class="icon-chevron-down"></i>
             <% end %>
             <br>
-            <span class="voting_text"><strong> <%= comment.sum_votes %> </strong></span>
+            <span id="vote_count_for_comment<%= comment.id %>"><strong> <%= comment.sum_votes %> </strong></span>
           </div>
 
           <div class="span8 well">
@@ -19,3 +19,6 @@
           </div>
           </div>
 <% end %>        
+
+
+
