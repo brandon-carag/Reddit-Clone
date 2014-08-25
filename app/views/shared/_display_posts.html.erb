@@ -9,7 +9,7 @@
       <%= link_to vote_post_path(post.id,vote: true), method: :post, remote: true do %>
         <i class="icon-chevron-up"></i>
       <% end %>
-      <%= link_to vote_post_path(post.id,vote: false), method: :post do %>
+      <%= link_to vote_post_path(post.id,vote: false), method: :post, remote: true do %>
         <i class="icon-chevron-down"></i>
       <% end %>
       <br>

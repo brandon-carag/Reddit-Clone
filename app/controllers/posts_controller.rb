@@ -47,8 +47,17 @@ before_action :require_login_redirect, only: [:new,:edit, :update, :create, :des
     # if @vote.save
       #Rails determines the desired response format from the HTTP Accept header submitted by the client
       respond_to do |format|
-        format.html {flash[:notice] = "Vote counted"; redirect_to :back}
+        format.html do
+          if @vote.save
+            flash[:notice] = "Vote counted"
+            redirect_to :back
+          else
+            flash[:error] = "You can only vote once for #{@post.title}"
+            redirect_to :back
+          end
+        end
         format.js {render '/shared/show_updated_vote_count'}
+        end
     #   end
     #   flash[:notice] = "Vote counted"
     # else
@@ -59,7 +68,7 @@ before_action :require_login_redirect, only: [:new,:edit, :update, :create, :des
 
       # If I try and direct it to a completely new path, it won't go there either... so perhaps it's stuck somewhere in the
       # rendering of the js
-    end
+    
   end
 
 
