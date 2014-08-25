@@ -6,14 +6,14 @@
   <div class="row">          
     <div class="span1 well voting">
       <!-- Below code turns a get request into the posting of a form through js -->
-      <%= link_to vote_post_path(post.id,vote: true), method: :post do %>
+      <%= link_to vote_post_path(post.id,vote: true), method: :post, remote: true do %>
         <i class="icon-chevron-up"></i>
       <% end %>
       <%= link_to vote_post_path(post.id,vote: false), method: :post do %>
         <i class="icon-chevron-down"></i>
       <% end %>
       <br>
-      <span class="voting_text"><strong> <%= post.sum_votes %> </strong></span>
+      <span id="vote_count_for_post<%= post.id %>"class="voting_text"><strong> <%= post.sum_votes %> </strong></span>
 
     </div>
     

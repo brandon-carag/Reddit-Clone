@@ -44,12 +44,21 @@ before_action :require_login_redirect, only: [:new,:edit, :update, :create, :des
   def vote
     @post=Post.find(params[:id])
     @vote=Vote.new(user_id:current_user.id,vote:params["vote"],voteable_type: "Post",voteable_id:@post.id)
-    if @vote.save
-      flash[:notice] = "Vote counted"
-      redirect_to :back
-    else
-      flash[:error] = "You can only vote once for #{@post.title}"
-      redirect_to :back
+    # if @vote.save
+      #Rails determines the desired response format from the HTTP Accept header submitted by the client
+      respond_to do |format|
+        format.html {flash[:notice] = "Vote counted"; redirect_to :back}
+        format.js {render '/shared/show_updated_vote_count'}
+    #   end
+    #   flash[:notice] = "Vote counted"
+    # else
+    #   flash[:error] = "You can only vote once for #{@post.title}"
+    #   redirect_to :back
+    #   # it doesn't seem to be redirecting
+      # redirect_to :back
+
+      # If I try and direct it to a completely new path, it won't go there either... so perhaps it's stuck somewhere in the
+      # rendering of the js
     end
   end
 
