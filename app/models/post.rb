@@ -26,26 +26,33 @@ class Post < ActiveRecord::Base;
   end
 
   def generate_slug
-    self.slug="Test Value"
-    self.slug=self.title.gsub(" ","_")
     @uniqueness_counter=0
-
-    #Replace bad characters
     #TODO: Search out more bad characters or find a way to whitelist
-    self.slug.tr!(" /=","_")
+    #Replace bad characters
+    self.slug=self.title.tr(" /=","_")
+    
 
     # Test Uniqueness
-    Post.all.each do |post|
-      if post.slug==self.slug
-      @uniqueness_counter+=1
-      end
-    end
+    # Post.all.each do |post|
+    #   if post.slug==self.slug
+    #   @uniqueness_counter+=1
+    #   end
+    # end
+
+    #Let's say, for the sake of argument, you wanted to allow your business users to create posts that had the same title.
+    #when you're slugging, it sounds as if you'd need to test whether a title was unique so that you wouldn't
+    #have multiple slugging routes pointing to the same URL.  The problem is, if the rails routing system
+    #is utilizing the same slug_generation method when generating URLs, won't it be generating the wrong URLs
 
     if @uniqueness_counter > 0
-    self.slug+=@uniqueness_counter.to_s
+      self.slug+=@uniqueness_counter.to_s
+      else
+      self.slug
     end
   end
 
-
+  def to_param
+    generate_slug
+  end
 
 end

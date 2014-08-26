@@ -42,7 +42,11 @@
         </button>
 
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                 
+          <li>
+            <%= link_to user_profile_path, class: 'nav_item' do %>
+              <i class="icon-wrench"></i> Show Profile
+             <% end %>
+          </li>       
           <li>
             <%= link_to edit_profile_path, class: 'nav_item' do %>
               <i class="icon-pencil"></i> Edit Profile

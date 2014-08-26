@@ -6,7 +6,8 @@ before_action :require_login_redirect, only: [:new,:edit, :update, :create, :des
   end
 
   def show
-    @post=Post.find(params[:id])
+    # @post=Post.find(params[:id])
+    assign_post_instance_variable
     @comment=Comment.new
   end
 
@@ -27,11 +28,11 @@ before_action :require_login_redirect, only: [:new,:edit, :update, :create, :des
   end
 #===================
   def edit
-    @post=Post.find(params[:id])
+    assign_post_instance_variable
   end
 
   def update
-    @post=Post.find(params[:id])
+    assign_post_instance_variable
     # @post.update_attributes(strong_params)
     if @post.update(strong_params)
       flash[:notice] = "Post successfully edited!"
@@ -71,6 +72,9 @@ before_action :require_login_redirect, only: [:new,:edit, :update, :create, :des
     
   end
 
+  def assign_post_instance_variable
+    @post=Post.find_by(slug: params[:id])
+  end
 
 
 
