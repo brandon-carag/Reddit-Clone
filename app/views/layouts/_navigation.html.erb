@@ -15,9 +15,10 @@
         <i class="icon-th-list"></i> Post Categories
         <span class="caret"></span>
       </button>
+
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
         <% Category.all.each do |category| %>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href= <%= category_path(category.id) %> ><%= category.name %></a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href= <%= category_path(category) %> ><%= category.name %></a></li>
         <% end %>
 
         <li role="presentation" class="divider"></li>

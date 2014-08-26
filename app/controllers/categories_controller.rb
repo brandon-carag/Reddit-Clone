@@ -6,7 +6,7 @@ def index
 end 
 
 def show
-  @category=Category.find(params[:id])
+  assign_category_instance_variable
 end
 
 def new
@@ -25,11 +25,11 @@ def create
 end
 #====================
 def edit
-  @category=Category.find(params[:id])
+  assign_category_instance_variable
 end
 
 def update
-  @category=Category.find(params[:id])
+  assign_category_instance_variable
     @category.update_attributes(strong_params)
     
   if @category.save
@@ -40,7 +40,9 @@ def update
   end
 end
 
-
+def assign_category_instance_variable
+  @category=Category.find_by(slug: params[:id])
+end
 
 private
 
