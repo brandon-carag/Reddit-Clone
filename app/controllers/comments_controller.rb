@@ -9,12 +9,13 @@ def show
 end
 
 def new
-  @post=Post.find(params[:post_id])
+  assign_post_instance_variable
   @comment=@post.comments.new
 end
 
 def create
-  @post=Post.find(params[:post_id])
+  assign_post_instance_variable
+  binding.pry
   @comment=@post.comments.new(strong_params)
   @comment.user_id=current_user.id
   if @comment.save
@@ -49,6 +50,9 @@ def vote
     
 end
 
+def assign_post_instance_variable
+  @post=Post.find_by(slug: params[:post_id])
+end
 
 private
 
