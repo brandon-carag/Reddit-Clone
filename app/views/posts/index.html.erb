@@ -1,12 +1,16 @@
 <% if !logged_in? %>
 <div class="well explanation span5"><p><small>
-PostIt! is a website aggregator.  Developed with with Ruby on Rails, it allows registered users to submit and categorize links (aka "Posts") to their favorite websites.  PostIt! accumulates these links and facilitates user voting on their relative merit.  On the back-end, it showcases the following features:
+Developed with with Ruby on Rails, PostIt! is a website aggregator.  It allows registered users to submit and categorize links (aka "Posts") to their favorite websites.  PostIt! accumulates these links and facilitates user voting on their merits.  Click on the "Sign Up" link to view the full feature set (we don't require an email address).
+
+Back-end architecture includes the following features:
 <ul>
 <li>Common C.R.U.D. Actions</li>
-<li>Post and commenting voting (with polymorphic associations)</li>
-<li>Hand-built authentication (without the use of gems like Devise or Authlogic)</li>
+<li>Post and comment voting (via polymorphic associations)</li>
+<li>MVC with various associations</li>
+<li>AJAX via Server-generated Javascript Response (SJR)</li>
+<li>User authentication (without the use of Rails gems like Devise or Authlogic)</li>
+<li>URL slugging</li>
 <li>Twitter bootstrap implementation</li>
-<li>Partials</li>
 </ul>
 </div>
 </small>

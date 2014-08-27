@@ -5,6 +5,8 @@
 <%= form_for @user do |f| %>
 <%= f.label "Username:" %>
 <%= f.text_field :username %>
+<%= f.label "Time Zone:" %>
+<%= f.time_zone_select :time_zone,priority_zones = ActiveSupport::TimeZone.us_zones %>
 <%= f.label "Password:" %>
 <%= f.password_field :password %>
 <%= f.label "Confirm Password:" %>
@@ -14,4 +16,3 @@
 
 <% end %>
 </div>
-

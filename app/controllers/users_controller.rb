@@ -4,11 +4,12 @@ class UsersController < ApplicationController
   end
 
   def create
+    binding.pry
     @user=User.new(strong_params)
 
     if @user.save
       flash[:notice] = "User successfully created!"
-      
+      puts params
       #This line automatically logs the user in by placing the user id in the session hash.
       session[:user_id]=@user.id     
       redirect_to posts_path
@@ -44,7 +45,7 @@ class UsersController < ApplicationController
 
   def strong_params
     # params.require(:post).permit(:url,:title,:description,:category_ids)
-    params.require(:user).permit(:username,:password,:password_confirmation)
+    params.require(:user).permit(:username,:time_zone,:password,:password_confirmation)
   end
 end
 

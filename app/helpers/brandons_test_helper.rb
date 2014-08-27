@@ -5,7 +5,14 @@ module BrandonsTestHelper
   end
 
   def time_formatter(time)
-    time.strftime"%b %e at %l:%m %p %Z"
+    if logged_in? && current_user.time_zone
+      time.in_time_zone(current_user.time_zone).strftime"%b %e at %l:%m %p %Z"  
+    else
+      #TODO: Not sure why the time zone seems to be defaulting to UDT, had to
+      #manually hard code "Pacific Time (US & Canada)" below 
+      time.in_time_zone("Pacific Time (US & Canada)").strftime"%b %e at %l:%m %p %Z"
+    end
   end
 
 end
+
