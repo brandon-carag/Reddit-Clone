@@ -13,3 +13,5 @@ def create_basic_categories
     Category.create(name:category)
   end
 end
+
+create_basic_categories
