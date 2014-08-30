@@ -15,7 +15,6 @@ end
 
 def create
   assign_post_instance_variable
-  binding.pry
   @comment=@post.comments.new(strong_params)
   @comment.user_id=current_user.id
   if @comment.save

@@ -2,6 +2,7 @@
         <% obj.comments.sort_by{|post|post.sum_votes}.reverse.each do |comment| %>   
 <div class="row">          
           <div class="span1 well voting">
+            <%binding.pry%>
             <%= link_to vote_post_comment_path(comment.post_id,comment.id,vote: true), method: :post, remote: true do %>
               <i class="icon-chevron-up"></i>
             <% end %>

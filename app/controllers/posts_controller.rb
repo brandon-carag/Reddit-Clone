@@ -16,7 +16,6 @@ before_action :require_login_redirect, only: [:new,:edit, :update, :create, :des
   end
 
   def create
-    binding.pry #TODO REMOVE
     @post=Post.new(strong_params)
     @post.user_id=current_user.id
     
