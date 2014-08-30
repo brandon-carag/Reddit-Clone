@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    binding.pry
     @user=User.new(strong_params)
 
     if @user.save
@@ -25,7 +24,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    binding.pry
     @user=User.find(params[:id])
     if @user.update(strong_params)
       flash[:notice] = "Profile information successfully edited!"
