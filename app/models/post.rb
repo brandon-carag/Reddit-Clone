@@ -15,7 +15,7 @@ class Post < ActiveRecord::Base;
   
   # validates_format_of :website, :with => URI::regexp(%w(http https))
 
-  def generate_slug
+  def generate_slug 
     @uniqueness_counter=0
     #TODO: Search out more bad characters or find a way to whitelist
     #Replace bad characters

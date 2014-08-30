@@ -5,7 +5,7 @@ module BrandonsTestHelper
   end
 
   def time_formatter(time)
-    if logged_in? && current_user.time_zone
+    if logged_in? 
       time.in_time_zone(current_user.time_zone).strftime"%b %e at %l:%m %p %Z"  
     else
       #TODO: Not sure why the time zone seems to be defaulting to UDT, had to

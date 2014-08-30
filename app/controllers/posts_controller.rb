@@ -29,6 +29,7 @@ before_action :require_login_redirect, only: [:new,:edit, :update, :create, :des
 #===================
   def edit
     assign_post_instance_variable
+    admin_or_creator_edit_privilege
   end
 
   def update
