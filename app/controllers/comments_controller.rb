@@ -14,6 +14,7 @@ def new
 end
 
 def create
+  binding.pry
   assign_post_instance_variable
   @comment=@post.comments.new(strong_params)
   @comment.user_id=current_user.id
@@ -21,11 +22,9 @@ def create
     flash[:notice] = "Comment successfully saved!"
     redirect_to post_path(params[:post_id])
   else
-    render 'posts/show'
-    # redirect_to post_path(params[:post_id])
-    # render '/posts/show'
-    # render '/shared/_comment_form'
-    # render '/new'
+    flash[:error] = "Comment was not saved.  Make sure the field is not blank."
+    redirect_to post_path(params[:post_id]) #TODO This should probably be a render, but when
+    #rendering, app crashes when submitting a blank comment.
   end
 end
 
