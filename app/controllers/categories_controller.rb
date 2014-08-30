@@ -8,6 +8,7 @@ end
 
 def show
   assign_category_instance_variable
+  # @category=Category.find_by(params[:id])
 end
 
 def new
@@ -48,7 +49,7 @@ end
 private
 
 def strong_params
-  #FIX THIS AFTER TESTING
+  #TODO: FIX THIS AFTER TESTING
   # params.require(:category).permit(:name)
   params.require(:category).permit!
 end
