@@ -6,9 +6,14 @@ before_action :require_login_redirect, only: [:new,:edit, :update, :create, :des
   end
 
   def show
-    # @post=Post.find(params[:id])
     assign_post_instance_variable
     @comment=Comment.new
+    respond_to do |format|
+    format.html
+    format.json {render json: @post}
+    format.xml {render xml: @post.title }
+
+    end
   end
 
   def new

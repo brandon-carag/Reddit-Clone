@@ -20,6 +20,7 @@ class Post < ActiveRecord::Base;
     #TODO: Search out more bad characters or find a way to whitelist
     #Replace bad characters
     self.slug=self.title.tr(" /=","_")
+
     
 
     # Test Uniqueness
