@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base;  
+  include Sluggable
+
   has_many :comments 
   has_many :posts
   has_many :votes
@@ -9,15 +11,17 @@ class User < ActiveRecord::Base;
   has_secure_password
 
   #TODO: Make sure we're using the correct ActiveRecord callback
-  after_validation :generate_slug
+  # after_validation :generate_slug
 
-  def generate_slug
-    self.slug=self.username.tr(" /=","_")
-  end
+  sluggable_column :username
 
-  def to_param
-    generate_slug
-  end
+  # def generate_slug
+  #   self.slug=self.username.tr(" /=","_")
+  # end
+
+  # def to_param
+  #   generate_slug
+  # end
 
 end
 
